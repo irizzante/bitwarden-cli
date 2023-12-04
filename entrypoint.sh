@@ -6,7 +6,9 @@ bw config server ${BW_HOST}
 
 bw login --apikey
 
-export BW_SESSION=$(bw unlock --passwordenv BW_PASSWORD)
+sessionCmd=$(bw unlock --passwordenv BW_PASSWORD | grep "export BW" | cut -d' ' -f2-)
+
+$sessionCmd
 
 bw unlock --check
 
